@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<title>Container Launch Status</title>
+<center>
+<h2 style = "margin-top:20%;">
+
+{% if response %}
+    Container launched ..
+    Container Name: {{container}} <br>
+    Image Name :{{image}}<br>
+    <a href='{% url 'dock-manage' %}'>Click here to manage container</a>
+{% else %}
+    Container Name: {{container}} <br>
+    This container name already exists.
+{% endif %}
+</h2>
+</center>

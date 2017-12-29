@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+<h2 style = "margin-top : 10%;"><center>Launch your Container :
+<h4>Select Docker Image </h4>
+<form action='{% url 'img-cont' %}'>
+    <select name='imagename'>
+        {% for i in docker_img %}
+          <option>{{i}} </option>
+        {% endfor %}
+    </select>
+<br><br>
+Enter name of the Container: <br>
+<input name='cname' />
+<br /><br>
+<input type='submit' />
+</center>
+</h2>
+<center>
+  <h1> OR </h1>
+<h2>
+  <a href='{% url 'dock-manage' %}'>Click here to manage container</a>
+</h2>
+</center>
+</form>

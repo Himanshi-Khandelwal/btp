@@ -1,0 +1,42 @@
+{% load static %}
+<head>
+  <title>Container Management</title>
+  <h2><center>Manage your Containers</center></h2>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<script>
+function lw(mycname)
+{
+window.location='/dock-manage/docker_shell/' + mycname;
+}
+</script>
+<script>
+function lw1(mycname)
+{
+// document.location='docker_start.py?x=' + mycname;
+window.location='/dock-manage/docker_stop/' + mycname;
+}
+</script>
+<script>
+function lw2(mycname)
+{
+ window.location='/dock-manage/docker_start/  ' + mycname;
+}
+</script>
+<script>
+function lw3(mycname)
+{
+window.location='/dock-manage/docker_remove/  ' + mycname;
+}
+</script>
+
+<table border='5'>
+    <tr><th>Images</th><th>ContainerName</th><th>Status</th><th>OnlineShell</th><th>Stop</th><th>Start</th><th>Remove</th></tr>
+    {% for x,y,z in val %}
+    <tr><td> {{y}} </td><td>{{x}}</td><td>{{z}}</td>
+      <td><input value='{{x}}' type='button' onclick='lw(this.value)' class=""/> </td>
+      <td> <input value={{x}} type='button' onclick='lw1(this.value)' class="stop"/> </td>
+      <td> <input value={{x}} type='button' onclick='lw2(this.value)' class="start"/> </td>
+      <td> <input value={{x}} type='button' onclick='lw3(this.value)' class="remove"/> </td></tr>
+      {% endfor %}
+</table>

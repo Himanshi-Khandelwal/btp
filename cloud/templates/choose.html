@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>CloudFront Services</title>
+<h1><center> <b>CloudFront </b> <a target="_blank" href="#"> <b> Services </b></a> </center></h1>
+<br>
+<br>
+
+<body>
+<div class="col-md-1"></div>
+<a href="{% url 'profile' %}" class="box col-md-4">
+  <h2><span>Cloud Front IDE</span> Platform as as Service</h2>
+  <h3>Code , Compile and Run......</h3><br><br>
+  <img src="../../static/css/coding.png" alt="">
+  <!-- <div class="code_img"><br></div> -->
+</a>
+<div class="col-md-2"></div>
+<a href="{% url 'images' %}" class="box col-md-4">
+  <h2><span>Launch and Manage </span>Container as a Service</h2>
+  <h3>Launch and Manage your own container</h3><br><br>
+  <img src="../../static/css/cont.png" alt="">
+  <!-- <div class="dock_img"><br></div> -->
+</a>
+</body>

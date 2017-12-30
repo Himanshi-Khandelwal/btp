@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import (base, login_view, signup, logout_view, profile, show_output, docker_list, docker_launch, docker_manage, docker_start,docker_stop,docker_shell,docker_remove,choose)
+from .views import (base, login_view, signup, logout_view, code_platform, show_output, docker_list, docker_launch, docker_manage, docker_start,docker_stop,docker_shell,docker_remove,choose)
 # import docker_stop
 
 urlpatterns = [
@@ -14,7 +14,7 @@ urlpatterns = [
 	url(r'^signup/$', signup, name='signup'),
 	url(r'^choose/$', choose, name='choose'),
 	url(r'^show-output/$', show_output,name='show'),
-	url(r'^profile/$', profile, name='profile'),
+	url(r'^code-platform/$', code_platform, name='code-platform'),
 	url(r'^images/$', docker_list, name='images'),
 	url(r'^img-cont/$', docker_launch, name='img-cont'),
 	url(r'^dock-manage/$', docker_manage, name='dock-manage'),

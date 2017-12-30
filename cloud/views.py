@@ -18,7 +18,7 @@ def choose(request):
     return render_to_response('choose.html')
 
 
-def profile(request):
+def code_platform(request):
     if(request.GET.get('codec')):
         code = request.GET.get('codec')
         fh = open('code.c', 'w')
@@ -136,7 +136,7 @@ def profile(request):
             a = b.replace('code.scala:','')
             return render(request, 'show.html', {'output': a})
 
-    return render_to_response('profile.html')
+    return render_to_response('code_platform.html')
 
 
 def docker_list(request):

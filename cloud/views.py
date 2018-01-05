@@ -18,16 +18,20 @@ def choose(request):
     return render_to_response('choose.html')
 
 
+def input_file(request, fh, code):
+    fh.write(str(code))
+    fh.close()
+    user_input = request.GET.get('user_input')
+    fh = open('input.txt', 'w')
+    fh.write(str(user_input))
+    fh.close()
+
+
 def code_platform(request):
     if(request.GET.get('codec')):
         code = request.GET.get('codec')
         fh = open('code.c', 'w')
-        fh.write(str(code))
-        fh.close()
-        user_input = request.GET.get('user_input')
-        fh = open('input.txt', 'w')
-        fh.write(str(user_input))
-        fh.close()
+        input_file(request, fh, code)
         status = subprocess.getstatusoutput("sudo gcc code.c")
         if status[0] == 0:
             a = subprocess.getstatusoutput("./a.out < input.txt ")
@@ -41,12 +45,7 @@ def code_platform(request):
     elif(request.GET.get('codecpp')):
         code = request.GET.get('codecpp')
         fh = open('code.cpp', 'w')
-        fh.write(str(code))
-        fh.close()
-        user_input = request.GET.get('user_input')
-        fh = open('input.txt', 'w')
-        fh.write(str(user_input))
-        fh.close()
+        input_file(request, fh, code)
         status = subprocess.getstatusoutput("sudo g++ code.cpp")
         if status[0] == 0:
             a = subprocess.getstatusoutput("./a.out < input.txt ")
@@ -59,12 +58,7 @@ def code_platform(request):
     elif(request.GET.get('codejava')):
         code = request.GET.get('codejava')
         fh = open('code.java', 'w')
-        fh.write(str(code))
-        fh.close()
-        user_input = request.GET.get('user_input')
-        fh = open('input.txt', 'w')
-        fh.write(str(user_input))
-        fh.close()
+        input_file(request, fh, code)
         status = subprocess.getstatusoutput("sudo javac code.java")
         if status[0] == 0:
             a = subprocess.getstatusoutput("sudo java code < input.txt ")
@@ -78,12 +72,7 @@ def code_platform(request):
     elif(request.GET.get('codeperl')):
         code = request.GET.get('codeperl')
         fh = open('code.pl', 'w')
-        fh.write(str(code))
-        fh.close()
-        user_input = request.GET.get('user_input')
-        fh = open('input.txt', 'w')
-        fh.write(str(user_input))
-        fh.close()
+        input_file(request, fh, code)
         status = subprocess.getstatusoutput("sudo perl code.pl < input.txt")
         if status[0] == 0:
             return render(request, 'show.html', {'output': status[1]})
@@ -99,12 +88,7 @@ def code_platform(request):
     elif(request.GET.get('codepython')):
         code = request.GET.get('codepython')
         fh = open('code.py', 'w')
-        fh.write(str(code))
-        fh.close()
-        user_input = request.GET.get('user_input')
-        fh = open('input.txt', 'w')
-        fh.write(str(user_input))
-        fh.close()
+        input_file(request, fh, code)
         status = subprocess.getstatusoutput("sudo python code.py < input.txt")
         if status[0] == 0:
             return render(request, 'show.html', {'output': status[1]})
@@ -120,12 +104,7 @@ def code_platform(request):
     elif(request.GET.get('codescala')):
         code = request.GET.get('codescala')
         fh = open('code.scala', 'w')
-        fh.write(str(code))
-        fh.close()
-        user_input = request.GET.get('user_input')
-        fh = open('input.txt', 'w')
-        fh.write(str(user_input))
-        fh.close()
+        input_file(request, fh, code)
         status = subprocess.getstatusoutput("sudo scalac code.scala")
         if status[0] == 0:
             a = subprocess.getstatusoutput("sudo scala code < input.txt ")

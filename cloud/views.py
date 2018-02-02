@@ -7,6 +7,7 @@ from .forms import SignUpForm, UserLoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as django_logout
 import subprocess
+import socket
 # Create your views here.
 
 
@@ -182,7 +183,7 @@ def docker_stop(request, mycname=None):
 
 def docker_shell(request, mycname=None):
     #ipStatus=subprocess.getoutput("docker inspect {0} | jq '.[].NetworkSettings.Networks.bridge.IPAddress'".format(mycname))
-    cstartstatus = subprocess.getstatusoutput("docker run -it -p 4200:4200 -e  SIAB_PASSWORD=guest -e SIAB_SUDO=true sspreitzer/shellinabox:latest")
+    cstartstatus = subprocess.getstatusoutput("docker run -it -p 4200:4200 -e  SIAB_PASSWORD=guest -e SIAB_SUDO=true sspreitzer/shellinabox")
 
 #    shellInstall=subprocess.getstatusoutput("docker exec {0} yum install shellinabox".format(mycname))
 #    if shellInstall[0] == 0:
@@ -190,7 +191,10 @@ def docker_shell(request, mycname=None):
 #        subprocess.getoutput("https://{0}:4200".format(ipStatus))
 #    else:
 #        print "Try Again"
-    return redirect('https://192.168.43.178:4200')
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
+    local_ip_address = s.getsockname()[0]
+    return redirect('https://{0}:4200'.format(local_ip_address))
 
 
 def show_output(request):

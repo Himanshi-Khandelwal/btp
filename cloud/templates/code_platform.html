@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
 <body>
 <h3 class= "platform">Platform as a Service <br> Cross Platform Cloud IDE</h3>
 
@@ -26,7 +27,7 @@
     <form action="">
       <div class="row">
         <div class="col-md-7 offset-md-0.5">
-            	<textarea rows="10" cols="75" input='text'class="tex-color" name='codec'>#include<stdio.h></textarea>
+            	<textarea  id="inputTextToSave" rows="10" cols="75" input='text'class="tex-color" name='codec'>#include<stdio.h></textarea>
         </div>
         <div class="col-md-4" style="margin-left:8%">
               <label for="title">Input : </label>
@@ -43,7 +44,7 @@
         <form action=" ">
           <div class="row">
                 <div class="col-md-7 offset-md-0.5">
-	                     <textarea rows="10" cols="75" input='text' name='codecpp' class="tex-color">#include <iostream>
+	                     <textarea  id="inputTextToSave" rows="10" cols="75" input='text' name='codecpp' class="tex-color">#include <iostream>
 using namespace std;</textarea>
                 </div>
                 <div class="col-md-4" style="margin-left:8%">
@@ -60,7 +61,7 @@ using namespace std;</textarea>
     <form action=" ">
       <div class="row">
           <div class="col-md-7 offset-md-0.5">
-	             <textarea rows="10" cols="75" input='text' name='codejava' class="tex-color">public class code {}</textarea>
+	             <textarea id="inputTextToSave" rows="10" cols="75" input='text' name='codejava' class="tex-color">public class code {}</textarea>
           </div>
           <div class="col-md-4" style="margin-left:8%">
               <label for="title">Input : </label>
@@ -76,7 +77,7 @@ using namespace std;</textarea>
     <form action="">
       <div class="row">
           <div class="col-md-7 offset-md-0.5">
-                <textarea rows="10" cols="75" input='text' name='codeperl' class="tex-color">#!/usr/bin/perl</textarea>
+                <textarea id="inputTextToSave" rows="10" cols="75" input='text' name='codeperl' class="tex-color">#!/usr/bin/perl</textarea>
           </div>
           <div class="col-md-4" style="margin-left:8%">
                 <label for="title">Input : </label>
@@ -92,7 +93,7 @@ using namespace std;</textarea>
     <form action="">
         <div class="row">
             <div class="col-md-7 offset-md-0.5">
-	                     <textarea rows="10" cols="75" input='text' name='codepython' class="tex-color">#!/usr/bin/python</textarea>
+	                     <textarea id="inputTextToSave" rows="10" cols="75" input='text' name='codepython' class="tex-color">#!/usr/bin/python</textarea>
             </div>
             <div class="col-md-4" style="margin-left:8%">
                       <label for="title">Input : </label>
@@ -108,7 +109,7 @@ using namespace std;</textarea>
     <form action=" ">
       <div class="row">
           <div class="col-md-7 offset-md-0.5">
-                  <textarea rows="10" cols="75" input='text' name='codescala' class="tex-color">object code {}</textarea>
+                  <textarea rows="10" id="inputTextToSave" cols="75" input='text' name='codescala' class="tex-color">object code {}</textarea>
           </div>
           <div class="col-md-4" style="margin-left:8%">
                   <label for="title">Input : </label>
@@ -119,23 +120,22 @@ using namespace std;</textarea>
   <button name="button" type="submit">Run>></button>
     </form>
   </div>
-
+                    <table>
+                    	<tr>
+                    		<td>Filename to Save As:</td>
+                    		<td><input id="inputFileNameToSaveAs"></input></td>
+                    		<td><button onclick="saveTextAsFile()">Save Code to File</button></td>
+                    	</tr>
+                    	<tr>
+                    		<td>Select a File to Load:</td>
+                    		<td><input type="file" id="fileToLoad"></td>
+                    		<td><button onclick="loadFileAsText()">Load Selected File</button><td>
+                    	</tr>
+                    </table>
 </div>
-
+<script src="{% static 'js/code.js' %}"></script>
 <script>
-function openCity(evt, cityName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
-}
+
 </script>
 
 </body>

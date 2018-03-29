@@ -24,12 +24,52 @@ function destroyClickedElement(event)
 function loadFileAsText()
 {
 	var fileToLoad = document.getElementById("fileToLoad").files[0];
-
+	var name = fileToLoad['name'].split(".");
+	var extension = name[1];
+	x = document.getElementsByClassName("city");
+	for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tablink");
+	for (i = 0; i < x.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+	}
+	if(extension == "py"){
+		 var cityName = "Python";
+		 document.getElementById(cityName).style.display = "block";
+		 document.getElementById("4").className += " w3-red";
+	}
+	else if(extension =="c"){
+		var cityName = "C";
+		document.getElementById(cityName).style.display = "block";
+		document.getElementById("0").className += " w3-red";
+	}
+	else if(extension =="cpp"){
+		var cityName = "C++";
+		document.getElementById(cityName).style.display = "block";
+		document.getElementById("1").className += " w3-red";
+	}
+	else if(extension =="pl"){
+		var cityName = "Perl";
+		document.getElementById(cityName).style.display = "block";
+		document.getElementById("3").className += " w3-red";
+	}
+	else if(extension =="java"){
+		var cityName = "Java";
+		document.getElementById(cityName).style.display = "block";
+		document.getElementById("2").className += " w3-red";
+	}
+	else if(extension =="scala"){
+		var cityName = "Scala";
+		document.getElementById(cityName).style.display = "block";
+		document.getElementById("5").className += " w3-red";
+	}
 	var fileReader = new FileReader();
 	fileReader.onload = function(fileLoadedEvent)
 	{
 		var textFromFileLoaded = fileLoadedEvent.target.result;
-		document.getElementById("inputTextToSave").value = textFromFileLoaded;
+		// console.log(textFromFileLoaded);
+		document.getElementById("inputTextToSave"+extension).value = textFromFileLoaded;
 	};
 	fileReader.readAsText(fileToLoad, "UTF-8");
 }

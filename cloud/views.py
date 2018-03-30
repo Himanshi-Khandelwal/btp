@@ -181,7 +181,7 @@ def docker_stop(request, mycname=None):
     return redirect('dock-manage')
 
 
-def docker_shell(request, mycname=None):
+def docker_shell(request):
     #ipStatus=subprocess.getoutput("docker inspect {0} | jq '.[].NetworkSettings.Networks.bridge.IPAddress'".format(mycname))
     cstartstatus = subprocess.getstatusoutput("docker run -it -p 4200:4200 -e  SIAB_PASSWORD=guest -e SIAB_SUDO=true sspreitzer/shellinabox")
 
@@ -239,3 +239,6 @@ def login_view(request):
 def logout_view(request):
     django_logout(request)
     return redirect("/")
+
+def terminal(request):
+    return render_to_response('terminal.html')

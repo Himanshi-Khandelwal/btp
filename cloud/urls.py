@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import (base, login_view, signup, logout_view, code_platform, show_output, docker_list, docker_launch, docker_manage, docker_start,docker_stop,docker_shell,docker_remove,choose)
+from .views import (base, login_view, signup, logout_view, code_platform, show_output, docker_list, docker_launch, docker_manage, docker_start,docker_stop,docker_shell,docker_remove,choose, terminal)
 # import docker_stop
 
 urlpatterns = [
@@ -17,9 +17,10 @@ urlpatterns = [
 	url(r'^code-platform/$', code_platform, name='code-platform'),
 	url(r'^images/$', docker_list, name='images'),
 	url(r'^img-cont/$', docker_launch, name='img-cont'),
+	url(r'^terminal/$', terminal, name='terminal'),
 	url(r'^dock-manage/$', docker_manage, name='dock-manage'),
 	url(r'^dock-manage/docker_start/(?P<mycname>[\w|\W]+)/$', docker_start, name='dock-start'),
 	url(r'^dock-manage/docker_stop/(?P<mycname>[\w|\W]+)/$', docker_stop, name='dock-stop'),
-	url(r'^dock-manage/docker_shell/(?P<mycname>[\w|\W]+)/$', docker_shell, name='dock-shell'),
+	url(r'^docker_shell/$', docker_shell, name='dock-shell'),
 	url(r'^dock-manage/docker_remove/(?P<mycname>[\w|\W]+)/$', docker_remove, name='dock-remove')
 ]

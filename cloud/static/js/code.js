@@ -1,19 +1,49 @@
 function saveTextAsFile()
 {
-	var textToSave = document.getElementById("inputTextToSave").value;
-	var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
-	var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+	var textToSave;
 	var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
-
 	var downloadLink = document.createElement("a");
 	downloadLink.download = fileNameToSaveAs;
-	downloadLink.innerHTML = "Download File";
-	downloadLink.href = textToSaveAsURL;
-	downloadLink.onclick = destroyClickedElement;
-	downloadLink.style.display = "none";
-	document.body.appendChild(downloadLink);
+	console.log("file name " + fileNameToSaveAs);
+	if(fileNameToSaveAs===""){
+		alert("Enter a file name with extension");
+	}
+	else{
+			var name = fileNameToSaveAs.split(".");
+			var extension = name[1];
+			if(name.length == 1){
+				textToSave = document.getElementById("inputTextToSavec").value;
+			}
+			if(extension =="c"){
+				textToSave = document.getElementById("inputTextToSavec").value
+			}
+			else if(extension=='cpp'){
+				textToSave = document.getElementById("inputTextToSavecpp").value
+			}
+			else if(extension=="java"){
+				textToSave = document.getElementById("inputTextToSavejava").value
+			}
+			else if(extension=="pl"){
+				textToSave = document.getElementById("inputTextToSavepl").value
+			}
+			else if(extension=="py"){
+				textToSave = document.getElementById("inputTextToSavepy").value
+			}
+			else if(extension=="scala"){
+				textToSave = document.getElementById("inputTextToSavescala").value
+			}
+			// var textToSave = document.getElementById("inputTextToSave").value;
+			var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+			var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
 
-	downloadLink.click();
+			downloadLink.innerHTML = "Download File";
+			downloadLink.href = textToSaveAsURL;
+			downloadLink.onclick = destroyClickedElement;
+			downloadLink.style.display = "none";
+			document.body.appendChild(downloadLink);
+
+			downloadLink.click();
+}
 }
 
 function destroyClickedElement(event)

@@ -90,7 +90,7 @@ table td .space{
 @import url(https://fonts.googleapis.com/css?family=Merriweather);
 
 body {
-  background-image: url(bg.jpg);
+  background-color: #E0E0E0 ;
   background-size: cover;
   background-repeat: no-repeat;
   font-family: 'Merriweather', serif;
@@ -178,14 +178,14 @@ a {
 .platform{
   text-align: center;
   margin: 1em 0 0.5em 0;
-	color: #33fff5;
-	font-size: 22px;
+	color: #800000;
+	font-size: 24px;
 	line-height: 40px;
-	font-weight: normal;
+	font-weight: 100;
 	text-transform: uppercase;
-	font-family: 'Orienta', sans-serif;
+	font-family: 'Tangerine', serif;
 	letter-spacing: 1px;
-	font-style: italic;
+
 }
 
 .place{

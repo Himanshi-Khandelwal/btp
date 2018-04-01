@@ -190,11 +190,11 @@ def ubuntu_shell(request):
     return redirect('https://{0}:4200'.format(local_ip_address))
 
 def centos_shell(request):
-    cstartstatus = subprocess.getstatusoutput("docker run -it -p 4200:4200 andrefernandes/docker-shellinabox")
+    cstartstatus = subprocess.getstatusoutput("docker run -it -p 2222:22 -e SIAPORT=9000 -p 9000:4200 andrefernandes/docker-shellinabox")
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
     local_ip_address = s.getsockname()[0]
-    return redirect('https://{0}:4200'.format(local_ip_address))
+    return redirect('https://{0}:9000'.format(local_ip_address))
 
 def show_output(request):
     return render_to_response('show.html')

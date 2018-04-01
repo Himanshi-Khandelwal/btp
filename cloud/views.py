@@ -181,21 +181,20 @@ def docker_stop(request, mycname=None):
     return redirect('dock-manage')
 
 
-def docker_shell(request):
+def ubuntu_shell(request):
     #ipStatus=subprocess.getoutput("docker inspect {0} | jq '.[].NetworkSettings.Networks.bridge.IPAddress'".format(mycname))
     cstartstatus = subprocess.getstatusoutput("docker run -it -p 4200:4200 -e  SIAB_PASSWORD=guest -e SIAB_SUDO=true sspreitzer/shellinabox")
-
-#    shellInstall=subprocess.getstatusoutput("docker exec {0} yum install shellinabox".format(mycname))
-#    if shellInstall[0] == 0:
-#        subprocess.getoutput("/usr/sbin/shellinaboxd")
-#        subprocess.getoutput("https://{0}:4200".format(ipStatus))
-#    else:
-#        print "Try Again"
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
     local_ip_address = s.getsockname()[0]
     return redirect('https://{0}:4200'.format(local_ip_address))
 
+def centos_shell(request):
+    cstartstatus = subprocess.getstatusoutput("docker run -it -p 4200:4200 andrefernandes/docker-shellinabox")
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
+    local_ip_address = s.getsockname()[0]
+    return redirect('https://{0}:4200'.format(local_ip_address))
 
 def show_output(request):
     return render_to_response('show.html')

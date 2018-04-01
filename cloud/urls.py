@@ -21,7 +21,7 @@ urlpatterns = [
 	url(r'^dock-manage/$', docker_manage, name='dock-manage'),
 	url(r'^dock-manage/docker_start/(?P<mycname>[\w|\W]+)/$', docker_start, name='dock-start'),
 	url(r'^dock-manage/docker_stop/(?P<mycname>[\w|\W]+)/$', docker_stop, name='dock-stop'),
-	url(r'^docker_shell/$', docker_shell, name='ubuntu-shell'),
-	url(r'^docker_shell1/$', docker_shell1, name='centos-shell'),
+	url(r'^ubuntu-shell/$', docker_shell, name='ubuntu-shell'),
+	url(r'^centos-shell/$', docker_shell1, name='centos-shell'),
 	url(r'^dock-manage/docker_remove/(?P<mycname>[\w|\W]+)/$', docker_remove, name='dock-remove')
 ]

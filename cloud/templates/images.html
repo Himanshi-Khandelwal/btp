@@ -1,4 +1,6 @@
+<title>Launch Container</title>
 {% load static %}
+
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
 <h2 style = "margin-top : 10%;"><center>Launch your Container :
@@ -19,7 +21,7 @@ Enter name of the Container: <br>
 <center>
   <h1> OR </h1>
 <h2>
-  <a href='{% url 'dock-manage' %}'>Click here to manage container</a>
+  <a href='{% url 'dock-manage' %}' style="color:#FF0000;">Click here to manage container</a>
 </h2>
 </center>
 </form>

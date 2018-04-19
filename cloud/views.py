@@ -8,6 +8,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout as django_logout
 import subprocess
 import socket
+from django.core.files.storage import FileSystemStorage
+import sys
+import subprocess
+import re
+import os
+from .pdf_to_text import pdfparser
+
 # Create your views here.
 
 
@@ -241,3 +248,46 @@ def logout_view(request):
 
 def terminal(request):
     return render_to_response('terminal.html')
+
+def convert_to(name ,timeout=None):
+    args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', name]
+
+    process = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+    filename = re.search('-> (.*?) using filter', process.stdout.decode())
+
+    if filename is None:
+        raise LibreOfficeError(process.stdout.decode())
+    else:
+        return filename.group(1)
+
+def libreoffice_exec():
+    # TODO: Provide support for more platforms
+    if sys.platform == 'darwin':
+        return '/Applications/LibreOffice.app/Contents/MacOS/soffice'
+    return 'libreoffice'
+
+class LibreOfficeError(Exception):
+    def __init__(self, output):
+        self.output = output
+
+
+def simple_upload(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        print(filename)
+        uploaded_file_url = fs.url(filename)
+        if filename.endswith('docx'):
+            convert_to(filename)
+        elif filename.endswith('pptx'):
+            print("hjhjhjkk")
+            subprocess.call(['libreoffice', '--headless', '--convert-to', 'pdf', filename])
+        elif filename.endswith('pdf'):
+            pdfparser(filename)
+        return render(request, 'conversion.html', {
+            'uploaded_file_url': uploaded_file_url
+        })
+
+
+    return render(request, 'conversion.html')

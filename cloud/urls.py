@@ -4,7 +4,9 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import (base, login_view, signup, logout_view, code_platform, show_output, docker_list, docker_launch, docker_manage, docker_start,docker_stop,ubuntu_shell,centos_shell,docker_remove,choose, terminal)
+from .views import (base, login_view, signup, logout_view, code_platform,
+		show_output, docker_list, docker_launch, docker_manage, docker_start,
+		docker_stop,ubuntu_shell,centos_shell,docker_remove,choose, terminal,simple_upload)
 # import docker_stop
 
 urlpatterns = [
@@ -23,5 +25,8 @@ urlpatterns = [
 	url(r'^dock-manage/docker_stop/(?P<mycname>[\w|\W]+)/$', docker_stop, name='dock-stop'),
 	url(r'^ubuntu-shell/$', ubuntu_shell, name='ubuntu-shell'),
 	url(r'^centos-shell/$', centos_shell, name='centos-shell'),
-	url(r'^dock-manage/docker_remove/(?P<mycname>[\w|\W]+)/$', docker_remove, name='dock-remove')
+	url(r'^dock-manage/docker_remove/(?P<mycname>[\w|\W]+)/$', docker_remove, name='dock-remove'),
+	url(r'^toconvert/$', simple_upload, name='conversion'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,163 @@
+{% load static %}
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+.upload-drop-zone {
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+.upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+}
+.upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+}
+
+
+
+.file-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.file-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.file-preview-input-title {
+    margin-left:2px;
+}
+</style>
+<script>
+$(document).ready(function(){
+      var i=1;
+     $("#add_row").click(function(){
+      $('#addr'+i).html("</td><td><input name='input-file-preview"+i+"' type='file' class='form-control input-md'/></td>");
+
+      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      i++;
+  });
+     $("#delete_row").click(function(){
+    	 if(i>1){
+		 $("#addr"+(i-1)).html('');
+		 i--;
+		 }
+	 });
+
+});
+</script>
+</head>
+  <!-- <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
+  </form> -->
+
+  <!-- {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+  {% endif %} -->
+
+  <p style="margin-top:10%;"><a href="{% url 'choose' %}">Return to home</a></p>
+<script src="{% static 'js/code.js' %}"></script>
+
+<!-- <a id="download" download="aa.pdf" href="">download</a> -->
+
+
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="container"> <br />
+    <div class="row">
+    	<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading"><strong>Upload files</strong> <small> </small></div>
+				<div class="panel-body">
+					<div class="input-group file-preview">
+						<input placeholder="" type="text" class="form-control file-preview-filename" disabled="disabled">
+						<!-- don't give a name === doesn't send on POST/GET -->
+						<span class="input-group-btn">
+						<!-- file-preview-clear button -->
+						<button type="button" class="btn btn-default file-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+						<!-- file-preview-input -->
+						<div class="btn btn-default file-preview-input"> <span class="glyphicon glyphicon-folder-open"></span> <span class="file-preview-input-title">Browse</span>
+							<input type="file" accept="text/cfg" name="myfile">
+							<!-- rename it -->
+						</div>
+						<button type="submit" class="btn btn-labeled btn-primary"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+						</span> </div>
+					<!-- /input-group image-preview [TO HERE]-->
+
+					<br />
+
+          <p class="text-center">1. Docx file to PDF format </p>
+          <p class="text-center">2. Pptx file to PDF format </p>
+          <p class="text-center">3. PDF format to text file</p>
+					<!-- Drop Zone -->
+
+	<!-- <div class="panel panel-default">
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table table-bordered table-hover" id="tab_logic">
+				<thead>
+					<tr >
+					<th class="text-center">
+						File Name
+					</th>
+				</thead>
+				<tbody>
+					<tr>
+					</tr>
+                    <tr id='addr1'></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div> -->
+
+
+
+<!--
+					<br />
+
+          <div class="progress">
+           <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+             <span class="sr-only">60% Complete</span>
+           </div>
+          </div>
+					<br /> -->
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+</div>
+
+</form>
+</html>

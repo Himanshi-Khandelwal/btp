@@ -6,7 +6,8 @@ from django.conf.urls.static import static
 
 from .views import (base, login_view, signup, logout_view, code_platform,
 		show_output, docker_list, docker_launch, docker_manage, docker_start,
-		docker_stop,ubuntu_shell,centos_shell,docker_remove,choose, terminal,simple_upload)
+		docker_stop,ubuntu_shell,centos_shell,docker_remove,choose, terminal,simple_upload,
+		download_file)
 # import docker_stop
 
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
 	url(r'^centos-shell/$', centos_shell, name='centos-shell'),
 	url(r'^dock-manage/docker_remove/(?P<mycname>[\w|\W]+)/$', docker_remove, name='dock-remove'),
 	url(r'^toconvert/$', simple_upload, name='conversion'),
+	url(r'^downloads/(?P<fname>[\w|\W]+)/$', download_file, name='downloads'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

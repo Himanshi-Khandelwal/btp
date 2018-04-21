@@ -69,6 +69,15 @@ $(document).ready(function(){
 
 });
 </script>
+<script>
+function downl(fname)
+{
+// document.location='docker_start.py?x=' + mycname;
+console.log("hiiii"+fname);
+window.location='/downloads/' + fname;
+}
+</script>
+
 </head>
   <!-- <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -76,9 +85,7 @@ $(document).ready(function(){
     <button type="submit">Upload</button>
   </form> -->
 
-  <!-- {% if uploaded_file_url %}
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-  {% endif %} -->
+
 
   <p style="margin-top:10%;"><a href="{% url 'choose' %}">Return to home</a></p>
 <script src="{% static 'js/code.js' %}"></script>
@@ -115,6 +122,11 @@ $(document).ready(function(){
           <p class="text-center">1. Docx file to PDF format </p>
           <p class="text-center">2. Pptx file to PDF format </p>
           <p class="text-center">3. PDF format to text file</p>
+
+          {% if uploaded_file_url %}
+
+              <input value={{uploaded_file_url}} type='button' onclick='downl(this.value)' class="stop"/>
+          {% endif %}
 					<!-- Drop Zone -->
 
 	<!-- <div class="panel panel-default">
@@ -160,4 +172,6 @@ $(document).ready(function(){
 </div>
 
 </form>
+
+
 </html>
